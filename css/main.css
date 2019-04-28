@@ -1,0 +1,862 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+
+  background: #232321;
+}
+
+html.inline-element {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+body {
+  position: relative;
+
+  min-width: 980px;
+  min-height: 900px;
+
+  font: 14px "Open Sans", Arial, sans-serif;
+  color: #ffe753;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Фильтры */
+
+.filters {
+  padding: 15px 0;
+
+  text-align: center;
+}
+
+.filters-item {
+  padding: 0 16px;
+
+  font-size: 18px;
+  line-height: 30px;
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+
+.filters-radio {
+  position: absolute;
+  right: -100px;
+  left: -100px;
+}
+
+.filters-radio:checked + .filters-item {
+  color: #000000;
+  text-decoration: none;
+
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+/* Форма */
+
+.upload-form {
+  position: absolute;
+  left: 50%;
+
+  width: 582px;
+  height: 569px;
+  margin: 5px 0 0 -291px;
+  padding: 0;
+
+  background: url("../img/logo-background-1.jpg") center;
+  border: 0;
+}
+
+.upload-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+  padding: 60px 0;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.8);
+  border: none;
+  overflow: auto;
+}
+
+.upload-image {
+  width: 582px;
+  height: 569px;
+  position: relative;
+  z-index: 1;
+
+  background: url("../img/logo-mask.png") no-repeat center;
+}
+
+.upload-effect {
+  position: relative;
+  margin: 0 auto;
+}
+
+.upload-effect-preview {
+  background-image: url('../img/upload-default-image.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.upload-effect-label-chrome .upload-effect-preview,
+.effect-chrome {
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
+}
+
+.upload-effect-label-sepia .upload-effect-preview,
+.effect-sepia {
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+.upload-effect-label-marvin .upload-effect-preview,
+.effect-marvin {
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+
+.upload-effect-label-phobos .upload-effect-preview,
+.effect-phobos {
+  -webkit-filter: blur(5px);
+          filter: blur(5px);
+}
+
+.upload-effect-label-heat .upload-effect-preview,
+.effect-heat {
+  -webkit-filter: brightness(3);
+          filter: brightness(3);
+}
+
+.upload-input {
+  visibility: hidden;
+}
+
+.upload-control {
+  position: absolute;
+  top: 193px;
+  left: 202px;
+
+  box-sizing: border-box;
+  width: 182px;
+  height: 182px;
+  margin: 0;
+  padding: 0;
+
+  background: url("../img/icon-photo.png") center no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.upload-image .upload-submit {
+  background-image: url("../img/upload-button.png");
+}
+
+.upload-file {
+  display: block;
+}
+
+.upload-image .upload-submit {
+  display: none;
+}
+
+.upload-input-hasvalue + .upload-file {
+  display: none;
+}
+
+.upload-input-hasvalue + .upload-file + .upload-submit {
+  display: block;
+}
+
+.upload-form-controls {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 0;
+
+  margin: 0;
+  padding: 10px;
+
+  border: 0;
+}
+
+.upload-form-cancel {
+  display: block;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  position: absolute;
+  top: 0;
+  left: 62%;
+  margin-left: 10px;
+
+  border: 0;
+  border-radius: 2px;
+
+  background: rgba(255, 255, 255, 0.2) url("../img/icon-cross.png") center no-repeat;
+}
+
+.upload-form-cancel:active {
+  transform: translateY(1px);
+}
+
+/* Кадрирование */
+.upload-resize-controls {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+
+  border: 0;
+}
+
+.upload-resize-control {
+  width: 33px;
+  height: 33px;
+  margin: 0;
+  padding: 0;
+
+  font: 700 20px/33px "Open Sans";
+  color: #fff;
+  text-align: center;
+  vertical-align: top;
+
+  background: rgba(0, 0, 0, 0.56);
+  border: 0;
+}
+
+.upload-resize-controls-value {
+  width: 60px;
+
+  font-size: 16px;
+
+  border: solid rgba(255, 255, 255, 0.5);
+  border-width: 0 1px;
+}
+
+.upload-resize-controls-button:active {
+  transform: translateY(1px);
+}
+
+.upload-resize-controls-button-dec {
+  line-height: 20px;
+
+  border-radius: 50% 0 0 50%;
+}
+
+.upload-resize-controls-button-inc {
+  border-radius: 0 50% 50% 0;
+}
+
+/* Эффекты */
+.upload-effect-controls {
+  position: relative;
+
+  width: 470px;
+  margin: 10px auto 30px;
+  padding: 0;
+
+  font-size: 12px;
+  line-height: 42px;
+  text-align: center;
+  color: #ffffff;
+  white-space: nowrap;
+
+  border: 0;
+}
+
+.upload-effect {
+  text-align: center;
+}
+
+.effect-image-preview {
+  vertical-align: middle;
+}
+
+.upload-effect-controls input[type=radio] {
+  position: absolute;
+
+  visibility: hidden;
+}
+
+.upload-effect-label {
+  display: inline-block;
+  margin: 0 5px;
+
+  font: 14px "Open Sans Condensed";
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.upload-effect-label:hover,
+input[type=radio]:checked + .upload-effect-label {
+  color: #ffe753;
+}
+
+input[type=radio]:checked + .upload-effect-label .upload-effect-preview {
+  border-color: #ffe753;
+}
+
+/* Превью */
+.upload-effect-preview {
+  display: block;
+  width: 70px;
+  height: 70px;
+
+  overflow: hidden;
+  background-size: 100% auto;
+  background-position: center;
+  border: solid 4px transparent;
+  border-radius: 5px;
+
+  margin-bottom: 5px;
+}
+
+/* Слайдер. Регулировка глубины фильтра */
+.upload-effect-level {
+  width: 495px;
+  height: 33px;
+
+  box-sizing: border-box;
+
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -60px;
+
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 33px;
+}
+
+.upload-effect-level-line {
+  height: 5px;
+
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: rgba(255, 231, 81, 0.4);
+}
+
+.upload-effect-level-pin {
+  width: 18px;
+  height: 18px;
+
+  position: absolute;
+  left: 20%;
+  top: 50%;
+
+  margin: -9px 0 0;
+
+  background: #ffe753;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  cursor: move;
+}
+
+.upload-effect-level-val {
+  width: 20%;
+  height: 100%;
+
+  position: absolute;
+
+  background: #ffe753;
+}
+
+/* Хэш-теги */
+.upload-form-hashtags {
+  width: 470px;
+
+  font: 18px "Open Sans";
+  color: #9a9a9a;
+
+  display: block;
+  margin: 0 auto 30px;
+  padding: 8px 10px;
+
+  border-radius: 5px;
+}
+
+.upload-form-hashtags:focus {
+  color: #000;
+}
+
+/* Описание */
+.upload-form-description {
+  width: 470px;
+  height: 4em;
+
+  font: 14px "Open Sans";
+  color: #9a9a9a;
+
+  display: block;
+  margin: 0 auto 30px;
+  padding: 20px 10px;
+
+  border-radius: 5px;
+}
+
+.upload-form-description:focus {
+  color: #000;
+}
+
+/* Кнопка отправки */
+.upload-form-submit {
+  padding: 0 20px;
+  margin-bottom: 30px;
+
+  font: 14px "Open Sans";
+  font-weight: 900;
+  color: #ffe753;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  line-height: 46px;
+  text-align: center;
+
+  background: rgba(255, 231, 82, 0.2);
+  border: 0;
+  border-radius: 4px;
+}
+
+.upload-form-submit:active {
+  transform: translateY(1px);
+}
+
+.upload-form-submit:disabled,
+.upload-form-submit-disabled {
+  opacity: 0.3;
+}
+
+/* Сообщение об ошибке */
+.upload-message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+
+  box-sizing: border-box;
+  padding: 20px;
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 569px;
+  text-align: center;
+  color: #ffe753;
+
+  background: #3c3614;
+}
+
+.upload-message a {
+  color: #ffe753;
+}
+
+.upload-message-error {
+  color: #e16567;
+
+  border: solid 5px rgb(130, 30, 0);
+}
+
+.upload-message-error a {
+  color: #e16567;
+}
+
+.upload-message-container {
+  display: inline-block;
+
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.container {
+  width: 980px;
+  margin: 0 auto;
+}
+
+.pictures {
+  padding-bottom: 120px;
+  padding-left: 12px;
+
+  font-size: 0;
+  text-align: left;
+}
+
+.pictures-loading:after,
+.pictures-failure:after {
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  z-index: 2;
+
+  box-sizing: border-box;
+  width: 200px;
+  margin-left: -100px;
+  padding: 20px;
+
+  font-size: 30px;
+  text-align: center;
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.pictures-loading:after {
+  content: "Загрузка...";
+}
+
+.pictures-failure:after {
+  content: "Ошибка загрузки";
+}
+
+.picture {
+  position: relative;
+
+  display: inline-block;
+  box-sizing: border-box;
+  width: 182px;
+  height: 182px;
+  margin-right: 11px;
+  margin-bottom: 14px;
+  overflow: hidden;
+
+  text-align: center;
+}
+
+.picture img {
+  height: 182px;
+  margin-bottom: -34px;
+
+  border: 0;
+}
+
+.picture-load-failure {
+  line-height: 182px;
+
+  background: url("../img/icon-cross.png") no-repeat center;
+  border: solid 1px rgba(255, 255, 255, 0.2);
+  opacity: 0.3;
+}
+
+.picture-load-failure img {
+  display: none;
+  width: 182px;
+  height: 182px;
+}
+
+.picture-stats {
+  display: none;
+  padding: 0 10px;
+
+  line-height: 24px;
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+}
+
+.picture:hover .picture-stats {
+  display: inline-block;
+}
+
+.picture-load-failure .picture-stats {
+  position: relative;
+  top: -12px;
+
+  line-height: 1.3;
+  vertical-align: bottom;
+}
+
+.picture-stat {
+  position: relative;
+
+  margin: 0 5px;
+
+  font-weight: bold;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.picture-stat:before {
+  content: "";
+  position: relative;
+  top: -1px;
+
+  display: inline-block;
+  margin: 0 2px;
+
+  vertical-align: middle;
+
+  background: url("../img/image-icons-sprite.png") no-repeat 0 0;
+}
+
+.picture-comments:before {
+  width: 20px;
+  height: 16px;
+
+  background-position: 0 0;
+}
+
+.picture-likes:before {
+  width: 19px;
+  height: 15px;
+
+  background-position: -21px 0;
+}
+
+@media (min-width: 1380px) {
+  .container {
+    width: 1380px;
+  }
+
+  .picture:nth-of-type(2n-1):nth-of-type(-n+6) {
+    margin-right: 12px;
+  }
+
+  .picture:nth-of-type(2),
+  .picture:nth-of-type(6),
+  .picture:nth-of-type(10) {
+    margin-right: 600px;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1379px) {
+  .picture:nth-child(1) {
+    margin-right: 600px;
+  }
+  .picture:nth-child(3) {
+    margin-right: 600px;
+  }
+  .picture:nth-child(5) {
+    margin-right: 600px;
+  }
+
+  .picture:nth-child(2),
+  .picture:nth-child(4),
+  .picture:nth-child(6) {
+    /*margin-left: 11px;*/
+  }
+
+  .picture:nth-child(2),
+  .picture:nth-child(4),
+  .picture:nth-child(6),
+  .picture:nth-child(11),
+  .picture:nth-child(16),
+  .picture:nth-child(21) {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 999px){
+  .picture:nth-child(1) {
+    margin-right: 600px;
+  }
+  .picture:nth-child(2) {
+    margin-right: 600px;
+  }
+  .picture:nth-child(3) {
+    margin-right: 600px;
+  }
+}
+
+.gallery-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+
+  overflow: auto;
+
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-overlay-close {
+  position: absolute;
+  top: -5px;
+  right: 0;
+
+  padding: 0 10px;
+
+  font-size: 45px;
+  text-align: center;
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+.gallery-overlay-preview {
+  display: inline-block;
+  margin: 30px 0;
+
+  background: #ffffff;
+}
+
+.gallery-overlay-image[src=""] {
+  display: block;
+  width: 640px;
+  height: 640px;
+
+  border: dotted 1px #dddddd;
+  cursor: pointer;
+}
+
+.gallery-overlay-controls {
+  font-weight: bold;
+  font-size: 14px;
+  color: #000000;
+}
+
+.gallery-overlay-controls-comments,
+.gallery-overlay-controls-like {
+  padding: 0 20px;
+
+  line-height: 40px;
+}
+
+.gallery-overlay-controls-comments {
+  margin-right: 150px;
+
+  text-align: left;
+}
+
+.gallery-overlay-controls-like {
+  float: right;
+  width: 150px;
+
+  text-align: right;
+}
+
+.likes-count {
+  cursor: pointer;
+}
+
+.likes-count:before {
+  content: "";
+
+  display: inline-block;
+  width: 18px;
+  height: 15px;
+  margin-right: 5px;
+
+  vertical-align: middle;
+
+  background: url("../img/icon-heart-sprite.gif") no-repeat 0 0;
+  cursor: pointer;
+}
+
+.likes-count-liked:before {
+  background-position-x: -18px;
+}
+
+.footer {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  left: 10px;
+
+  box-sizing: border-box;
+  height: 115px;
+  padding: 20px 0 40px;
+
+  font-size: 12px;
+  font-family: Roboto, Arial, sans-serif;
+  color: #ffffff;
+
+  border-top: solid 1px #cccccc;
+}
+
+.footer .center-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.footer a {
+  color: #ffffff;
+}
+
+.footer-logo,
+.footer-social {
+  flex-basis: 50%;
+  width: 50%;
+}
+
+.footer-logo {
+  position: relative;
+
+  padding-top: 55px;
+}
+
+.footer-logo-link:hover {
+  opacity: 0.6;
+}
+
+.footer-logo-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.footer-social {
+  text-align: right;
+}
+
+.footer-social-item {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin-left: 10px;
+  overflow: hidden;
+
+  list-style: none;
+  font-size: 0;
+  vertical-align: top;
+  text-indent: -1999em;
+
+  background: url("../img/social-sprite.png") no-repeat;
+  opacity: 0.6;
+}
+
+.footer-social-item:hover {
+  opacity: 1;
+}
+
+
+
+.footer-social-item-instagram {
+  background-position: -28px 0;
+}
+
+.footer-social-item-facebook {
+  background-position: -56px 0;
+}
+
+.footer-social-item-vk {
+  background-position: -84px 0;
+}

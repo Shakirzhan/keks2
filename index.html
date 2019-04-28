@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Open+Sans&subset=latin,cyrillic">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>Кекстаграм</title>
+</head>
+<body>
+
+<form class="filters hidden" action="index.html" method="get" autocomplete="off" style="display: block;">
+  <input type="radio" id="filter-recommend" class="filters-radio" name="filter" value="recommend" checked>
+  <label for="filter-recommend" class="filters-item">Рекомендуемые</label>
+
+  <input type="radio" id="filter-popular" class="filters-radio" name="filter" value="popular">
+  <label for="filter-popular" class="filters-item">Популярные</label>
+
+  <input type="radio" id="filter-discussed" class="filters-radio" name="filter" value="discussed">
+  <label for="filter-discussed" class="filters-item">Обсуждаемые</label>
+
+  <input type="radio" id="filter-random" class="filters-radio" name="filter" value="random">
+  <label for="filter-random" class="filters-item">Случайные</label>
+</form>
+
+<form class="upload-form" id="upload-select-image" method="post"
+      enctype="multipart/form-data"
+      action="/"
+      autocomplete="off"
+      onsubmit="">
+  <div class="upload-image">
+    <input type="file" onchange="getImage()" id="upload-file" class="upload-input" name="filename"  > 
+    <!-- required -->
+    <label class="upload-file upload-control" for="upload-file" tabindex="0"></label>
+  </div>
+
+  <div class="upload-overlay  hidden" style="display: block;">
+    <!--  style="display: block;" -->
+    <div class="upload-effect">
+      <fieldset class="upload-resize-controls">
+        <button type="button"
+                class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-dec">–
+        </button><!--
+        --><input type="text" class="upload-resize-control upload-resize-controls-value" value="100" readonly title="Image Scale" name="scale"/><!--
+        --><button type="button"
+                class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-inc">+
+        </button>
+      </fieldset>
+
+      <div class="upload-form-preview">
+        <div></div>
+        <img src="img/upload-default-image.jpg" class="effect-image-preview" style="display: none;">
+        <canvas id="canvas" width="586" height="587"></canvas>
+      </div>
+
+      <fieldset class="upload-effect-controls">
+        <div class="upload-effect-level">
+          <div class="upload-effect-level-line">
+            <div class="upload-effect-level-pin"></div>
+            <div class="upload-effect-level-val"></div>
+          </div>
+        </div>
+
+        <input class="upload-effect" type="radio" name="effect" id="upload-effect-none" value="none" checked>
+        <label class="upload-effect-label" for="upload-effect-none">
+          <div class="upload-effect-preview" tabindex="1"></div>
+          Оригинал
+        </label>
+
+        <input class="upload-effect" type="radio" name="effect" id="upload-effect-chrome" value="chrome">
+        <label class="upload-effect-label upload-effect-label-chrome" for="upload-effect-chrome">
+          <div class="upload-effect-preview" tabindex="1"></div>
+          Хром
+        </label>
+
+        <input class="upload-effect" type="radio" name="effect" id="upload-effect-sepia" value="sepia">
+        <label class="upload-effect-label upload-effect-label-sepia" for="upload-effect-sepia">
+          <div class="upload-effect-preview" tabindex="1"></div>
+          Сепия
+        </label>
+
+        <input class="upload-effect" type="radio" name="effect" id="upload-effect-marvin" value="marvin">
+        <label class="upload-effect-label upload-effect-label-marvin" for="upload-effect-marvin">
+          <div class="upload-effect-preview" tabindex="1"></div>
+          Марвин
+        </label>
+
+        <input class="upload-effect" type="radio" name="effect" id="upload-effect-phobos" value="phobos">
+        <label class="upload-effect-label upload-effect-label-phobos" for="upload-effect-phobos">
+          <div class="upload-effect-preview" tabindex="1"></div>
+          Фобос
+        </label>
+
+        <input class="upload-effect" type="radio" name="effect" id="upload-effect-heat" value="heat">
+        <label class="upload-effect-label upload-effect-label-heat" for="upload-effect-heat">
+          <div class="upload-effect-preview" tabindex="1"></div>
+          Зной
+        </label>
+      </fieldset>
+
+      <input class="upload-form-hashtags" name="hashtags" placeholder="#хэш-тег" tabindex="1">
+
+      <textarea class="upload-form-description" name="description" placeholder="Ваш комментарий..." tabindex="1"></textarea>
+
+      <button class="upload-form-cancel" type="reset" id="upload-cancel" tabindex="1"></button>
+      <button class="upload-form-submit" type="submit" id="upload-submit" tabindex="1" style="cursor: pointer;">Отправить</button>
+    </div>
+  </div>
+
+  <div class="upload-message hidden">
+    <div class="upload-message-container"></div>
+  </div>
+</form>
+
+<div class="pictures container" style="font-size: 12px;">
+</div>
+
+<footer class="footer container">
+  <div class="center-wrapper">
+    <section class="footer-logo">
+      Сделано в <a tabindex="1" href="http://htmlacademy.ru" class="footer-logo-link"><img src="img/ha-logo.png"
+                                                                                           class="footer-logo-image"
+                                                                                           width="130"
+                                                                                           alt="HTML Academy"/>HTML
+      Academy</a> &copy; 2017
+    </section>
+    <nav class="footer-social">
+      <a tabindex="1" href="https://twitter.com/htmlacademy_ru" alt="twitter"
+         class="footer-social-item footer-social-item-twitter" target="_blank" rel="nofollow">Twitter</a>
+      <a tabindex="1" href="https://www.instagram.com/htmlacademy/" alt="instagram"
+         class="footer-social-item footer-social-item-instagram" target="_blank" rel="nofollow">Instagtam</a>
+      <a tabindex="1" href="https://www.facebook.com/htmlacademy" alt="facebook"
+         class="footer-social-item footer-social-item-facebook" target="_blank" rel="nofollow">Facebook</a>
+      <a tabindex="1" href="https://vk.com/htmlacademy" alt="vk" class="footer-social-item footer-social-item-vk"
+         target="_blank" rel="nofollow">VK</a>
+    </nav>
+  </div>
+</footer>
+
+
+<div class="gallery-overlay hidden">
+  <span class="gallery-overlay-close" tabindex="0">&times;</span>
+  <div class="gallery-overlay-preview">
+    <img src="" class="gallery-overlay-image" alt="">
+    <div class="gallery-overlay-controls">
+      <div class="gallery-overlay-controls-like">Нравится <span class="likes-count">0</span></div>
+      <div class="gallery-overlay-controls-comments"><span class="comments-count">125</span> комментариев</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/template" id="picture-template">
+  <% obj.forEach(function(item) { %>
+  <a href="#" class="picture" tabindex="0">
+    <img src="<%-item%>" width="182" height="182">
+    <span class="picture-stats">
+      <span class="picture-stat picture-comments"></span>
+      <span class="picture-stat picture-likes"></span>
+    </span>
+  </a>
+  <% }); %> 
+</script>
+<script type="text/template" id="picture-template2">
+  <% for (var key in obj) { %>
+  <a href="#" class="picture" tabindex="<%-obj[key]["id"]%>">
+    <img src="<%-obj[key]["url_image"]%>" width="182" height="182">
+    <span class="picture-stats">
+      <span class="picture-stat picture-comments"></span>
+      <span class="picture-stat picture-likes"></span>
+    </span>
+  </a>
+  <% } %> 
+</script>
+<script type="text/javascript" src="js/lodash.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
